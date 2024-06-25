@@ -30,6 +30,13 @@ const CountryDetail = async ({ params }: CountryDetailProps) => {
     .join(', ');
   const nativeName = Object.values(country.name.nativeName || {})[0]?.common || 'N/A';
 
+  const borderCountries = country.borders.map((borderCode: string) => {
+    const borderCountry = countries.find((c: any) => c.cca3 === borderCode);
+    return borderCountry ? borderCountry.name.common : borderCode;
+  });
+
+  
+
   return (
     <>
       <div className="p-4" >
@@ -57,17 +64,21 @@ const CountryDetail = async ({ params }: CountryDetailProps) => {
             <p>Currencies: {currencies}</p>
           </span>
         </div>
-        <div className="flex justify-" >
-          <h2 className="text-2xl font-semibold mt-4">Border Countries:</h2>
-          <ul className="flex justify-center items-center" >
-            {country.borders.map((border: string) => (
-              <li key={border}>
-                <Link href={`/countries/${border}`}>
+        <div className="flex " >
+          <h2 className="text-2xl font-semibold mr-5">Border Countries:</h2>
+          <ul className="flex justify-center items-center gap-4  " >
+          {borderCountries.length > 0 ? (
+            borderCountries.map((border: string, index: number ) => (
+              <li className="border-2 rounded-sm px-2" key={index}>
+                <Link href={`/countries/${country.borders[index]}`}>
                   {border}
                 </Link>
               </li>
-            ))}
-          </ul>
+            ))
+          ) : (
+            <li>No border countries</li>
+          )}
+        </ul>
         </div>
       </div>
     </>
