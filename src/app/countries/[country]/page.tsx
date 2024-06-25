@@ -1,6 +1,4 @@
-
 import Link from 'next/link';
-
 import { fetchCountries } from '../../../services/countryServices';
 import { Button } from '@/components/ui/button';
 import { GoArrowLeft } from "react-icons/go";
@@ -12,19 +10,14 @@ interface CountryDetailProps {
 }
 
 const CountryDetail = async ({ params }: CountryDetailProps) => {
-
   const countries = await fetchCountries();
   const country = countries.find((c: any) => c.cca3 === params.country);
-
 
   if (!country) {
     return <div>Country not found</div>;
   }
 
-
-
   const languages = Object.values(country.languages).join(', ');
-
   const currencies = Object.values(country.currencies)
     .map((currency: any) => `${currency.name}`)
     .join(', ');
@@ -35,50 +28,50 @@ const CountryDetail = async ({ params }: CountryDetailProps) => {
     return borderCountry ? borderCountry.name.common : borderCode;
   });
 
-  
-
   return (
     <>
-      <div className="p-4" >
-        <Button className='w-24  bg-gray-400 dark:bg-slate-500 ' >
-          <Link href='/' >
+      <div className="p-4">
+        <Button className='w-24 bg-gray-400 dark:bg-slate-500'>
+          <Link href='/'>
             <GoArrowLeft />
           </Link>
         </Button>
       </div>
-      <div className=" grid justify-center space-x-52 my-20  " >
-        <div className=" " >
-          <img src={country.flags.png} alt={country.name.common} className="w-auto  " />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-20 px-4">
+        <div className="flex justify-center">
+          <img src={country.flags.png} alt={country.name.common} className="max-w-full h-auto" />
         </div>
-        <div className="flex p-4">
+        <div className=" space-y-4 ">
           <h1 className="text-3xl font-bold mb-4">{country.name.common}</h1>
-          <div className="" >
-            <p>NativeName: {nativeName}</p>
-            <p>Population: {country.population.toLocaleString()}</p>
-            <p>Region: {country.region}</p>
-            <p>Subregion: {country.subregion}</p>
-            <p>Capital: {country.capital}</p>
+          <div className='flex space-x-16 ' >
+            <div className="" >
+              <p>Native Name: {nativeName}</p>
+              <p>Population: {country.population.toLocaleString()}</p>
+              <p>Region: {country.region}</p>
+              <p>Subregion: {country.subregion}</p>
+              <p>Capital: {country.capital}</p>
+            </div>
+            <div>
+              <p>Languages: {languages}</p>
+              <p>Currencies: {currencies}</p>
+            </div>
           </div>
-          <span>
-            <p>Languages: {languages}</p>
-            <p>Currencies: {currencies}</p>
-          </span>
-        </div>
-        <div className="flex " >
-          <h2 className="text-2xl font-semibold mr-5">Border Countries:</h2>
-          <ul className="flex justify-center items-center gap-4  " >
-          {borderCountries.length > 0 ? (
-            borderCountries.map((border: string, index: number ) => (
-              <li className="border-2 rounded-sm px-2" key={index}>
-                <Link href={`/countries/${country.borders[index]}`}>
-                  {border}
-                </Link>
-              </li>
-            ))
-          ) : (
-            <li>No border countries</li>
-          )}
-        </ul>
+          <div>
+            <h2 className="text-2xl font-semibold mb-2">Border Countries:</h2>
+            <ul className="flex flex-wrap gap-2">
+              {borderCountries.length > 0 ? (
+                borderCountries.map((border: string, index: number) => (
+                  <li key={index} className="border-2 rounded-sm px-2">
+                    <Link href={`/countries/${country.borders[index]}`}>
+                      {border}
+                    </Link>
+                  </li>
+                ))
+              ) : (
+                <li>No border countries</li>
+              )}
+            </ul>
+          </div>
         </div>
       </div>
     </>
