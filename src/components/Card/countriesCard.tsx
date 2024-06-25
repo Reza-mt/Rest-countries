@@ -15,14 +15,20 @@ interface Country {
   cca3: string;
 }
 
-export default async function CountiresCard() {
-  const countries = await fetchCountries();
+interface Props {
+  filteredCountries: Country[];
+}
 
+export default function CountiresCard({ filteredCountries }: Props){
+  if (!filteredCountries) {
+    return <div>Loading...</div>;
+  }
   return (
+    
     <div className="container w-auto p-4 ">
       <h1 className="text-xl font-bold mb-4">Countries</h1>
       <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {countries.map((country: Country) => (
+        {filteredCountries.map((country: Country) => (
           <div key={country.name.common} className=" border rounded-xl">
             <img src={country.flags.png} alt={country.name.common} className="mb-2 h-2/4 w-full " />
             <div className=" p-4 text-gray-600 font-bold dark:text-gray-400 ">

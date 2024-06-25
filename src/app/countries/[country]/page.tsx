@@ -1,6 +1,7 @@
 
-import { fetchCountries } from '../../../services/countryServices';
 import Link from 'next/link';
+
+import { fetchCountries } from '../../../services/countryServices';
 
 interface CountryDetailProps {
   params: {
@@ -25,15 +26,18 @@ const CountryDetail = async ({ params }: CountryDetailProps) => {
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">{country.name.common}</h1>
       <img src={country.flags.png} alt={country.name.common} className="mb-4" />
+      <p>Population: {country.population.toLocaleString()}</p>
       <p>Region: {country.region}</p>
       <p>Subregion: {country.subregion}</p>
-      <p>Population: {country.population.toLocaleString()}</p>
+      <p>capital: {country.capital}</p>
+      {/* <p>languages: {country.languages}</p> */}
+      {/* <p>capital: {country.currencies}</p> */}
       <h2 className="text-2xl font-semibold mt-4">Border Countries:</h2>
       <ul>
         {country.borders.map((border: string) => (
           <li key={border}>
             <Link href={`/countries/${border}`}>
-              <a className="text-blue-500 hover:underline">{border}</a>
+              {border}
             </Link>
           </li>
         ))}

@@ -13,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import CountiresCard from '../Card/countriesCard';
 
 interface Country {
   name: {
@@ -24,7 +25,7 @@ interface Country {
   };
 }
 
-export const SearchBar = () => {
+export const Landing = () => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -44,9 +45,13 @@ export const SearchBar = () => {
   (region ? country.region === region : true)
   );
 
+  const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setRegion(e.target.value);
+  };
 
 
   return (
+    <div>
     <div className="flex justify-around mt-10 ">
       <Input
         type="search"
@@ -54,14 +59,14 @@ export const SearchBar = () => {
         placeholder="Search for a country"
         className="w-2/6"
       />
-      <Select>
+      <Select  onChange={handleRegionChange}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Select a Country" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Country ...</SelectLabel>
-            <SelectItem value="Allregion">All regions</SelectItem>
+            <SelectItem value="A">All regions</SelectItem>
             <SelectItem value="Africa">Africa</SelectItem>
             <SelectItem value="Americas">Americas</SelectItem>
             <SelectItem value="Asia">Asia</SelectItem>
@@ -70,6 +75,8 @@ export const SearchBar = () => {
           </SelectGroup>
         </SelectContent>
       </Select>
+    </div>
+      <CountiresCard filteredCountries={filteredCountries} />
     </div>
   );
 };
