@@ -61,7 +61,7 @@ export const SearchBar = () => {
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Country ...</SelectLabel>
-            <SelectItem value="">All regions</SelectItem>
+            <SelectItem value="Allregion">All regions</SelectItem>
             <SelectItem value="Africa">Africa</SelectItem>
             <SelectItem value="Americas">Americas</SelectItem>
             <SelectItem value="Asia">Asia</SelectItem>
