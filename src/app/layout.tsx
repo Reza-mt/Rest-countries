@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 import ThemeSwitch from '@/components/navbar/themeSwitcher'
+import Navbar from '@/components/navbar/navbar'
 
 
 
@@ -20,9 +21,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+
       <body className={inter.className}>
         <Providers>
-          {/* <ThemeSwitch/> */}
+          <Navbar />
+          <hr className="h-px my-1 bg-black border-2 dark:bg-gray-700"></hr>
           {children}
         </Providers>
       </body>

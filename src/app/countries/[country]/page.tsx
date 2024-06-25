@@ -10,38 +10,55 @@ interface CountryDetailProps {
 }
 
 const CountryDetail = async ({ params }: CountryDetailProps) => {
-  console.log('params:', params); 
 
   const countries = await fetchCountries();
-  console.log('countries:', countries.map(c => c.cca3)); 
-
   const country = countries.find((c: any) => c.cca3 === params.country);
-  console.log('country:', country); 
+
 
   if (!country) {
     return <div>Country not found</div>;
   }
 
+
+
+  const languages = Object.values(country.languages).join(', ');
+
+  const currencies = Object.values(country.currencies)
+    .map((currency: any) => `${currency.name}`)
+    .join(', ');
+  const nativeName = Object.values(country.name.nativeName || {})[0]?.common || 'N/A';
+
   return (
-    <div className="container mx-auto p-4">
+    <div className=" flex justify-center space-x-52 my-80  " >
+      <div className=" " >
+        <img src={country.flags.png} alt={country.name.common} className="w-auto  " />
+      </div>
+      <div className="flex p-4">
       <h1 className="text-3xl font-bold mb-4">{country.name.common}</h1>
-      <img src={country.flags.png} alt={country.name.common} className="mb-4" />
-      <p>Population: {country.population.toLocaleString()}</p>
-      <p>Region: {country.region}</p>
-      <p>Subregion: {country.subregion}</p>
-      <p>capital: {country.capital}</p>
-      {/* <p>languages: {country.languages}</p> */}
-      {/* <p>capital: {country.currencies}</p> */}
-      <h2 className="text-2xl font-semibold mt-4">Border Countries:</h2>
-      <ul>
-        {country.borders.map((border: string) => (
-          <li key={border}>
-            <Link href={`/countries/${border}`}>
-              {border}
-            </Link>
-          </li>
-        ))}
-      </ul>
+        <div className="" >
+          <p>NativeName: {nativeName}</p>
+          <p>Population: {country.population.toLocaleString()}</p>
+          <p>Region: {country.region}</p>
+          <p>Subregion: {country.subregion}</p>
+          <p>Capital: {country.capital}</p>
+        </div>
+        <span>
+          <p>Languages: {languages}</p>
+          <p>Currencies: {currencies}</p>
+        </span>
+      </div>
+      <div className="flex justify-" >
+        <h2 className="text-2xl font-semibold mt-4">Border Countries:</h2>
+        <ul className="flex justify-center items-center" >
+          {country.borders.map((border: string) => (
+            <li key={border}>
+              <Link href={`/countries/${border}`}>
+                {border}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
