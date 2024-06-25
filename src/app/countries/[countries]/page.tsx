@@ -5,7 +5,11 @@ import { fetchCountries } from '../../../services/countryServices';
 import Link from 'next/link';
 
 interface CountryDetailProps {
-  country: {
+    params:{
+        countryCode: string;
+
+    }
+    country: {
     name: {
       common: string;
     };
@@ -22,6 +26,12 @@ interface CountryDetailProps {
 const CountryDetail = ({ country }) => {
   const router = useRouter();
   const { country } = router.query;
+  const country = countries.find((c: any) => c.cca3 === params.countryCode);
+
+
+  if (!country) {
+    return <div>Country not found</div>;
+  }
 
   return (
     <div className="container mx-auto p-4">
@@ -32,7 +42,7 @@ const CountryDetail = ({ country }) => {
       <p>Population: {country.population.toLocaleString()}</p>
       <h2 className="text-2xl font-semibold mt-4">Border Countries:</h2>
       <ul>
-        {country.borders.map((border) => (
+        {country.borders.map((border:string) => (
           <li key={border}>
              <Link href={`/countries/${border}`}>
               <a className="text-blue-500 hover:underline">{border}</a>
