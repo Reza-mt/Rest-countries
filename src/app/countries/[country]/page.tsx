@@ -2,6 +2,8 @@
 import Link from 'next/link';
 
 import { fetchCountries } from '../../../services/countryServices';
+import { Button } from '@/components/ui/button';
+import { GoArrowLeft } from "react-icons/go";
 
 interface CountryDetailProps {
   params: {
@@ -29,37 +31,46 @@ const CountryDetail = async ({ params }: CountryDetailProps) => {
   const nativeName = Object.values(country.name.nativeName || {})[0]?.common || 'N/A';
 
   return (
-    <div className=" flex justify-center space-x-52 my-80  " >
-      <div className=" " >
-        <img src={country.flags.png} alt={country.name.common} className="w-auto  " />
+    <>
+      <div className="p-4" >
+        <Button className='w-24  bg-gray-400 dark:bg-slate-500 ' >
+          <Link href='/' >
+            <GoArrowLeft />
+          </Link>
+        </Button>
       </div>
-      <div className="flex p-4">
-      <h1 className="text-3xl font-bold mb-4">{country.name.common}</h1>
-        <div className="" >
-          <p>NativeName: {nativeName}</p>
-          <p>Population: {country.population.toLocaleString()}</p>
-          <p>Region: {country.region}</p>
-          <p>Subregion: {country.subregion}</p>
-          <p>Capital: {country.capital}</p>
+      <div className=" grid justify-center space-x-52 my-20  " >
+        <div className=" " >
+          <img src={country.flags.png} alt={country.name.common} className="w-auto  " />
         </div>
-        <span>
-          <p>Languages: {languages}</p>
-          <p>Currencies: {currencies}</p>
-        </span>
+        <div className="flex p-4">
+          <h1 className="text-3xl font-bold mb-4">{country.name.common}</h1>
+          <div className="" >
+            <p>NativeName: {nativeName}</p>
+            <p>Population: {country.population.toLocaleString()}</p>
+            <p>Region: {country.region}</p>
+            <p>Subregion: {country.subregion}</p>
+            <p>Capital: {country.capital}</p>
+          </div>
+          <span>
+            <p>Languages: {languages}</p>
+            <p>Currencies: {currencies}</p>
+          </span>
+        </div>
+        <div className="flex justify-" >
+          <h2 className="text-2xl font-semibold mt-4">Border Countries:</h2>
+          <ul className="flex justify-center items-center" >
+            {country.borders.map((border: string) => (
+              <li key={border}>
+                <Link href={`/countries/${border}`}>
+                  {border}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      <div className="flex justify-" >
-        <h2 className="text-2xl font-semibold mt-4">Border Countries:</h2>
-        <ul className="flex justify-center items-center" >
-          {country.borders.map((border: string) => (
-            <li key={border}>
-              <Link href={`/countries/${border}`}>
-                {border}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    </>
   );
 };
 
