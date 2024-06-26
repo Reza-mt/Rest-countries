@@ -47,7 +47,7 @@ const CountryDetail = async ({ params }: CountryDetailProps) => {
     .map((currency: any) => `${currency.name}`)
     .join(', ');
 
-    const nativeName = Object.values(country.name.nativeName || {}).find((native) => native.common)?.common;
+    const nativeName = Object.values(country.name.nativeName || {}).find((native): native is { common: string } => 'common' in native)?.common;
 
   const borderCountries = country.borders.map((borderCode: string) => {
     const borderCountry = countries.find((c: any) => c.cca3 === borderCode);
