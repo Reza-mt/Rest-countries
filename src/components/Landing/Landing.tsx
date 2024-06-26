@@ -41,8 +41,8 @@ export const Landing = () => {
   }, []);
 
   const filteredCountries = countries.filter((country: Country) =>
-    country.name.common.toLowerCase().includes(searchTerm.toLowerCase())&&
-  (region ? country.region === region : true)
+    country.name.common.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (region ? country.region === region : true)
   );
 
   const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -51,32 +51,32 @@ export const Landing = () => {
 
 
   return (
-    <div>
-    <div className="flex justify-around mt-10 ">
-      <Input
-        type="search"
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search for a country"
-        className="w-2/6"
-      />
-      <Select  onChange={handleRegionChange}>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Select a Country" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Country ...</SelectLabel>
-            <SelectItem value="A">All regions</SelectItem>
-            <SelectItem value="Africa">Africa</SelectItem>
-            <SelectItem value="Americas">Americas</SelectItem>
-            <SelectItem value="Asia">Asia</SelectItem>
-            <SelectItem value="Europe">Europe</SelectItem>
-            <SelectItem value="Oceania">Oceania</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-    </div>
+    < >
+      <div className="flex flex-col justify-center items-center gap-6 md:flex-row md:justify-around  mt-10 ">
+        <Input
+          type="search"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search for a country"
+          className="w-3/4 md:w-2/6"
+        />
+        <Select onChange={handleRegionChange}>
+          <SelectTrigger className="w-[180px] ">
+            <SelectValue placeholder="Select a Country" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Country ...</SelectLabel>
+              <SelectItem value="A">All regions</SelectItem>
+              <SelectItem value="Africa">Africa</SelectItem>
+              <SelectItem value="Americas">Americas</SelectItem>
+              <SelectItem value="Asia">Asia</SelectItem>
+              <SelectItem value="Europe">Europe</SelectItem>
+              <SelectItem value="Oceania">Oceania</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
       <CountiresCard filteredCountries={filteredCountries} />
-    </div>
+    </>
   );
 };

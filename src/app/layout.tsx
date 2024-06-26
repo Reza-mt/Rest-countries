@@ -24,7 +24,7 @@ export default function RootLayout({
 
       <body className={inter.className}>
         <Providers>
-          <Navbar />
+          <Navbar  />
           <hr className="h-px my-1 bg-black border-2 dark:bg-gray-700"></hr>
           {children}
         </Providers>

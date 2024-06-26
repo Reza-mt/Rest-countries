@@ -30,7 +30,7 @@ const CountryDetail = async ({ params }: CountryDetailProps) => {
 
   return (
     <>
-      <div className="p-4">
+      <div className="mx-6 md:mx-40 mt-5 ">
         <Button className='w-24 bg-gray-400 dark:bg-slate-500'>
           <Link href='/'>
             <GoArrowLeft />
@@ -41,9 +41,9 @@ const CountryDetail = async ({ params }: CountryDetailProps) => {
         <div className="flex justify-center">
           <img src={country.flags.png} alt={country.name.common} className="max-w-full h-auto" />
         </div>
-        <div className=" space-y-4 ">
+        <div className="mx-5 space-y-4 ">
           <h1 className="text-3xl font-bold mb-4">{country.name.common}</h1>
-          <div className='flex space-x-16 ' >
+          <div className='flex flex-col  gap-10 md:flex-row md:space-x-16 ' >
             <div className="" >
               <p>Native Name: {nativeName}</p>
               <p>Population: {country.population.toLocaleString()}</p>
