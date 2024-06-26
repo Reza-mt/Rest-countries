@@ -11,6 +11,32 @@ interface CountryDetailProps {
   };
 }
 
+interface Country {
+  name: {
+    common: string;
+    nativeName?: { // Make sure nativeName is optional
+      common: string;
+    };
+  };
+  region: string;
+  subregion: string;
+  capital: string;
+  population: number;
+  languages: {
+    [key: string]: string;
+  };
+  currencies: {
+    [key: string]: {
+      name: string;
+    };
+  };
+  flags: {
+    png: string;
+  };
+  borders: string[];
+}
+
+
 const CountryDetail = async ({ params }: CountryDetailProps) => {
   const countries = await fetchCountries();
   const country = countries.find((c: any) => c.cca3 === params.country);
