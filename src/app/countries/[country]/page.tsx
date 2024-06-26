@@ -9,12 +9,9 @@ interface CountryDetailProps {
   params: {
     country: string;
   };
-}
-
-interface Country {
   name: {
     common: string;
-    nativeName?: { // Make sure nativeName is optional
+    nativeName?: { 
       common: string;
     };
   };
@@ -49,7 +46,8 @@ const CountryDetail = async ({ params }: CountryDetailProps) => {
   const currencies = Object.values(country.currencies)
     .map((currency: any) => `${currency.name}`)
     .join(', ');
-  const nativeName = Object.values(country.name.nativeName || {})[0]?.common || 'N/A';
+
+    const nativeName = Object.values(country.name.nativeName || {}).find((native) => native.common)?.common;
 
   const borderCountries = country.borders.map((borderCode: string) => {
     const borderCountry = countries.find((c: any) => c.cca3 === borderCode);
