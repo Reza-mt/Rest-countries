@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import Image from 'next/image'
+
 import { fetchCountries } from '../../../services/countryServices';
 import { Button } from '@/components/ui/button';
 import { GoArrowLeft } from "react-icons/go";
@@ -39,7 +41,7 @@ const CountryDetail = async ({ params }: CountryDetailProps) => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-20 px-4">
         <div className="flex justify-center">
-          <img src={country.flags.png} alt={country.name.common} className="max-w-full h-auto" />
+          <Image src={country.flags.png} width={400} height={100} alt={country.name.common} className="max-w-full h-auto" />
         </div>
         <div className="mx-5 space-y-4 ">
           <h1 className="text-3xl font-bold mb-4">{country.name.common}</h1>
