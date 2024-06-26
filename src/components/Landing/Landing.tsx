@@ -45,8 +45,8 @@ export const Landing = () => {
     (region ? country.region === region : true)
   );
 
-  const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setRegion(e.target.value);
+  const handleRegionChange = (value:string) => {
+    setRegion(value);
   };
 
 
@@ -59,14 +59,14 @@ export const Landing = () => {
           placeholder="Search for a country"
           className="w-3/4  md:w-2/6"
         />
-        <Select onChange={handleRegionChange}>
+        <Select onValueChange={handleRegionChange}>
           <SelectTrigger className="w-[180px] ">
             <SelectValue placeholder="Select a Country" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Country ...</SelectLabel>
-              <SelectItem value="A">All regions</SelectItem>
+              <SelectItem value="Allregion">All regions</SelectItem>
               <SelectItem value="Africa">Africa</SelectItem>
               <SelectItem value="Americas">Americas</SelectItem>
               <SelectItem value="Asia">Asia</SelectItem>
