@@ -52,12 +52,12 @@ export const Landing = () => {
 
   return (
     < >
-      <div className="flex flex-col justify-center items-center gap-6 md:flex-row md:justify-around  mt-10 ">
+      <div className=" flex flex-col justify-center items-center gap-6 md:flex-row md:justify-between md:mx-20 2xl:mx-56 mt-10 ">
         <Input
           type="search"
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search for a country"
-          className="w-3/4 md:w-2/6"
+          className="w-3/4  md:w-2/6"
         />
         <Select onChange={handleRegionChange}>
           <SelectTrigger className="w-[180px] ">
