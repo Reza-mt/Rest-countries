@@ -30,7 +30,7 @@ const CountryDetail = async ({ params }: CountryDetailProps) => {
 
   return (
     <>
-      <div className="mx-6 md:mx-40 mt-5 ">
+      <div className="mx-6 md:mx-36 2xl:mx-[16.5rem] mt-5 ">
         <Button className='w-24 bg-gray-400 dark:bg-slate-500'>
           <Link href='/'>
             <GoArrowLeft />
