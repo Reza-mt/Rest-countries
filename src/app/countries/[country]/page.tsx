@@ -104,4 +104,4 @@ interface CountryDetailProps {
   );
 };
 
-export default CountryDetail;
+
