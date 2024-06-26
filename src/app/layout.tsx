@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
 
-      <body className={inter.className}>
+      <body className="dark:bg-darkBg">
         <Providers>
           <Navbar  />
           <hr className="h-px my-1 bg-black border-2 dark:bg-gray-700"></hr>

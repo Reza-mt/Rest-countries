@@ -27,10 +27,10 @@ export default function CountiresCard({ filteredCountries }: Props) {
 
     <div className="container w-10/12  p-4 md:w-11/12  ">
       <h1 className="text-xl font-bold mb-4">Countries</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-10">
         {filteredCountries.map((country: Country) => (
-          <Link href={`/countries/${country.cca3}`}>
-            <div key={country.name.common} className=" border rounded-xl">
+          <Link className='' href={`/countries/${country.cca3}`}>
+            <div key={country.name.common} className=" border rounded-xl flex flex-col h-full">
               <img src={country.flags.png} alt={country.name.common} className="mb-2 h-2/4 w-full " />
               <div className=" p-4 text-gray-600 font-bold dark:text-gray-400 ">
                 <h2 className="text-xl font-semibold">{country.name.common}</h2>

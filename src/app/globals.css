@@ -65,12 +65,17 @@
       --ring: 212.7 26.8% 83.9%;
     }
   }
-
+  dark{
+    background: hsl(209, 23%, 22%);
+    /*color:#06324b*/
+    }
+  
   @layer base {
     * {
       @apply border-border;
     }
     body {
       @apply bg-background text-foreground;
+      
     }
   }
