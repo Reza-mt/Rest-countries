@@ -6,33 +6,38 @@ import { Button } from '@/components/ui/button';
 import { GoArrowLeft } from "react-icons/go";
 
 // interface CountryDetailProps {
-//   params: {
-//     country: string;
-//   };
-//   name: {
-//     common: string;
-//     nativeName?: { 
-//       common: string;
-//     };
-//   };
-//   region: string;
-//   subregion: string;
-//   capital: string;
-//   population: number;
-//   languages: {
-//     [key: string]: string;
-//   };
-//   currencies: {
-//     [key: string]: {
-//       name: string;
-//     };
-//   };
-//   flags: {
-//     png: string;
-//   };
-//   borders: string[];
-// }
+// //   params: {
+// //     country: string;
+// //   };
+// //   name: {
+// //     common: string;
+// //     nativeName?: { 
+// //       common: string;
+// //     };
+// //   };
+// //   region: string;
+// //   subregion: string;
+// //   capital: string;
+// //   population: number;
+// //   languages: {
+// //     [key: string]: string;
+// //   };
+// //   currencies: {
+// //     [key: string]: {
+// //       name: string;
+// //     };
+// //   };
+// //   flags: {
+// //     png: string;
+// //   };
+// //   borders: string[];
+// // }
 
+interface CountryDetailProps {
+  params: {
+    country: string;
+  };
+}
 
  const CountryDetail = async ({ params }: CountryDetailProps) => {
   const countries = await fetchCountries();
