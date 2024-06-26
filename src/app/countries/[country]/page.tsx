@@ -34,7 +34,7 @@ interface CountryDetailProps {
 }
 
 
- export const CountryDetail = async ({ params }: CountryDetailProps) => {
+  const CountryDetail = async ({ params }: CountryDetailProps) => {
   const countries = await fetchCountries();
   const country = countries.find((c: any) => c.cca3 === params.country);
 
