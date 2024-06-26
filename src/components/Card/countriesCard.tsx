@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { fetchCountries } from '../../services/countryServices';
-import { Button } from '../ui/button';
+import Image from 'next/image'
 
 interface Country {
   name: {
@@ -31,7 +30,7 @@ export default function CountiresCard({ filteredCountries }: Props) {
         {filteredCountries.map((country: Country) => (
           <Link className='' href={`/countries/${country.cca3}`}>
             <div key={country.name.common} className=" border rounded-xl flex flex-col h-full">
-              <img src={country.flags.png} alt={country.name.common} className="mb-2 h-2/4 w-full " />
+              <Image src={country.flags.png} width={200} height={100} alt={country.name.common} className="mb-2 h-2/4 w-full " />
               <div className=" p-4 text-gray-600 font-bold dark:text-gray-400 ">
                 <h2 className="text-xl font-semibold">{country.name.common}</h2>
                 <p>Population: <span className=" font-normal ">{country.population.toLocaleString()}</span></p>
